@@ -1,6 +1,6 @@
 # gogedit
 
-exploring the stack 🔫 🪀 🤖
+exploring a stack, toying around 🔫 🪀 🤖
 
 You will need:
 

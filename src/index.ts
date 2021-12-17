@@ -4,7 +4,8 @@ async function main() {
   const orm = await MikroORM.init({
     dbName: "",
     type: "postgresql",
-    debug: !IS_PRODUCTION,});
+    debug: !IS_PRODUCTION,
+  });
 }
 
 main();

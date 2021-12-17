@@ -1,19 +1,10 @@
 module.exports = {
-  overrides: [
-    {
-      files: ["*.ts"],
-      parserOptions: {
-        parser: "@typescript-eslint/parser",
-      },
-      rules: {
-        "@typescript-eslint/no-unused-vars": "off",
-      },
-    },
+  parser: "@typescript-eslint/parser",
+  parserOptions: {},
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
   ],
-  extends: ["plugin:@typescript-eslint/recommended"],
-  plugins: ["prettier"],
-  rules: {
-    "prettier/prettier": "error",
-  },
   rules: {},
 }

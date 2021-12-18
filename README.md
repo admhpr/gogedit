@@ -19,3 +19,5 @@ change the fields marked `<change-me>` to values of your choice
 # install deps
 
 `npm i`
+
+# run the server

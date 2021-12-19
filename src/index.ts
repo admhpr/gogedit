@@ -1,3 +1,5 @@
+import { config } from "dotenv";
+config();
 import { MikroORM } from "@mikro-orm/core";
 import { IS_PRODUCTION } from "./constants";
 import { Post } from "./entities/Post";
@@ -9,6 +11,7 @@ async function main() {
   });
 
   const post = orm.em.create(Post, { title: "first post" });
+  await orm.em.persistAndFlush(post);
 }
 
-main();
+main().catch((error) => console.error(error));

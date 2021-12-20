@@ -16,6 +16,9 @@
     "src/**/*.{js,ts}": [
       "npx eslint --fix",
       "npx prettier --write"
+    ],
+    "*.{js,json,yml}": [
+      "prettier --write"
     ]
   },
   "repository": {

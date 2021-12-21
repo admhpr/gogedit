@@ -3,6 +3,10 @@ import { IS_PRODUCTION } from "./constants";
 import { Post } from "./entities/Post";
 
 export const ormConfig = {
+  migrations: {
+    path: "",
+    pattern: /^[\w-]+\d+\.[tj]s$/,
+  },
   entities: [Post],
   dbName: process.env.DB_NAME,
   type: `postgresql`,

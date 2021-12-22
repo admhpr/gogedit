@@ -5,7 +5,7 @@ export class Post {
   @PrimaryKey()
   id!: number;
 
-  @Property({ type: "date" })
+  @Property({ type: "date", default: "NOW();" })
   createdAt = new Date();
 
   @Property({ type: "date", onUpdate: () => new Date() })

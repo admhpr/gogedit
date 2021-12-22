@@ -24,7 +24,9 @@ async function main() {
   await apolloServer.start();
   apolloServer.applyMiddleware({ app });
   app.listen(SERVER_PORT, () => {
-    console.log(`app started on http://localhost:${SERVER_PORT}/graphql 🚀`);
+    console.log(
+      `server  started on http://localhost:${SERVER_PORT}/graphql 🚀`
+    );
   });
 }
 

@@ -5,7 +5,7 @@ exploring a stack, toying around 🔫 🪀 🤖
 You will need:
 
 - [X] [docker](https://docs.docker.com/)
-- [X] [node](https://nodejs.org/en/)16.13.1 recommended install with [nvm](https://github.com/nvm-sh/nvm)
+- [X] [node](https://nodejs.org/en/) v16.13.1 recommended install with [nvm](https://github.com/nvm-sh/nvm)
 
 # setup creds
 

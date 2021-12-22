@@ -2,6 +2,11 @@ version: "3.8"
 services:
   database:
     image: "postgres:latest"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root"]
+      timeout: 45s
+      interval: 10s
+      retries: 10
     ports:
       - 5432:5432
     environment:

@@ -6,5 +6,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "prettier",
   ],
-  rules: {},
+  rules: {
+    semi: [2, "always"],
+  },
 }

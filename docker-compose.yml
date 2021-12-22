@@ -2,16 +2,13 @@ version: "3.8"
 services:
   database:
     image: "postgres:latest"
-    healthcheck:
-      test: ["CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root"]
-      timeout: 45s
-      interval: 10s
-      retries: 10
     ports:
       - 5432:5432
     environment:
       POSTGRES_USER: "${DB_USER}"
       POSTGRES_PASSWORD: "${DB_PASSWORD}"
       POSTGRES_DB: "${DB_NAME}"
+    env_file:
+      - .env
     volumes:
       - ./db-data/:/var/lib/postgresql/data/

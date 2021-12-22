@@ -51,8 +51,12 @@
     "@mikro-orm/core": "^4.5.9",
     "@mikro-orm/migrations": "^4.5.9",
     "@mikro-orm/postgresql": "^4.5.9",
+    "apollo-server-express": "^3.5.0",
     "dotenv": "^10.0.0",
-    "pg": "^8.7.1"
+    "express": "^4.17.2",
+    "graphql": "^16.2.0",
+    "pg": "^8.7.1",
+    "type-graphql": "^1.1.1"
   },
   "mikro-orm": {
     "useTsNode": true,

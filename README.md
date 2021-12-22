@@ -20,4 +20,6 @@ change the fields marked `<change-me>` to values of your choice
 
 `npm i`
 
-# run the server
+# run the server in dev mode
+
+`npm run dev`

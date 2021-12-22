@@ -20,6 +20,7 @@ async function main() {
       validate: false,
     }),
   });
+  await apolloServer.start();
   apolloServer.applyMiddleware({ app });
   app.listen(SERVER_PORT, () => {
     console.log(`app started on ${SERVER_PORT}`);

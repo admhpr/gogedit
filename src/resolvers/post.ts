@@ -5,7 +5,7 @@ import { Context } from "../types";
 @Resolver()
 export class PostResolver {
   @Query(() => [Post])
-  posts(@Ctx() ctx: Context) {
-    return "post";
+  posts(@Ctx() { em }: Context): Promise<Post[]> {
+    return em.find(Post, {});
   }
 }

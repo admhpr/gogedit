@@ -79,6 +79,14 @@ export class UserResolver {
           ],
         };
       }
+      return {
+        errors: [
+          {
+            field: "username",
+            message: "server error",
+          },
+        ],
+      };
     }
 
     return { user };

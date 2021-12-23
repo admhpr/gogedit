@@ -1,8 +1,7 @@
 import { config } from "dotenv";
 config();
 import { MikroORM } from "@mikro-orm/core";
-// import { Post } from "./entities/Post"
-import { SERVER_PORT } from "./constants";
+import { IS_PRODUCTION, SERVER_PORT } from "./constants";
 import ormConfig from "./mikro-orm.config";
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
@@ -10,10 +9,34 @@ import { buildSchema } from "type-graphql";
 import { PostResolver } from "@resolvers/post";
 import { UserResolver } from "@resolvers/user";
 
+import redis, { RedisClientType } from "redis";
+import session from "express-session";
+import connectRedis from "connect-redis";
+
 async function main() {
   const orm = await MikroORM.init(ormConfig);
   await orm.getMigrator().up();
   const app = express();
+
+  const RedisStore = connectRedis(session);
+  const redisClient = redis.createClient();
+
+  app.use(
+    session({
+      name: "qid",
+      store: new RedisStore({
+        client: redisClient as RedisClientType,
+        disableTouch: true,
+      }),
+      secret: "meh",
+      cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 365,
+        httpOnly: true,
+        secure: IS_PRODUCTION,
+      },
+      resave: false,
+    })
+  );
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
@@ -24,6 +47,7 @@ async function main() {
   });
   await apolloServer.start();
   apolloServer.applyMiddleware({ app });
+
   app.listen(SERVER_PORT, () => {
     console.log(`server running on http://localhost:${SERVER_PORT}/graphql 🚀`);
   });

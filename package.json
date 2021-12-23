@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run prebuild && tsc && tsc-alias",
+    "create:migration": "npx mikro-orm migration:create",
     "dev": "nodemon",
     "start": "node dist/index.js",
     "format": "npx prettier --write 'src/**/*.+(js|ts|json)'",

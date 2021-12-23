@@ -9,9 +9,10 @@ import { buildSchema } from "type-graphql";
 import { PostResolver } from "@resolvers/post";
 import { UserResolver } from "@resolvers/user";
 
-import redis from "redis";
+import { createClient } from "redis";
+
 import session from "express-session";
-import connectRedis from "connect-redis";
+import connectRedis, { Client } from "connect-redis";
 
 async function main() {
   const orm = await MikroORM.init(ormConfig);
@@ -19,13 +20,13 @@ async function main() {
   const app = express();
 
   const RedisStore = connectRedis(session);
-  const redisClient = redis.createClient();
+  const redisClient = createClient();
 
   app.use(
     session({
       name: "qid",
       store: new RedisStore({
-        client: redisClient as any,
+        client: redisClient as unknown as Client,
         disableTouch: true,
       }),
       secret: "meh",

@@ -11,7 +11,7 @@ import { buildSchema } from "type-graphql";
 import { PostResolver } from "@resolvers/post";
 import { UserResolver } from "@resolvers/user";
 
-// @ts-expect-error types for redis 3.1.2
+// @ts-expect-error no type defs for redis 3.1.2
 import redis from "redis";
 
 import session from "express-session";
@@ -27,7 +27,7 @@ async function main() {
 
   app.use(
     session({
-      name: "BIG_COOKIE_WOOKIE",
+      name: "qid",
       store: new RedisStore({
         client: redisClient as unknown as Client,
         disableTouch: true,
@@ -36,6 +36,7 @@ async function main() {
       cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 365,
         httpOnly: true,
+        sameSite: "lax", // prevent https://en.wikipedia.org/wiki/Cross-site_request_forgery
         secure: IS_PRODUCTION,
       },
       saveUninitialized: false,

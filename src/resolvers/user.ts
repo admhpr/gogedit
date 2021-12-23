@@ -37,16 +37,26 @@ class UserResponse {
 
 @Resolver()
 export class UserResolver {
-  @Mutation(() => User)
+  @Mutation(() => UserResponse)
   async register(
     @Arg("options") options: UsernamePasswordInput,
     @Ctx() { em }: AppContext
-  ) {
+  ): Promise<UserResponse> {
     const { username, password } = options;
+    if (!username.length) {
+      return {
+        errors: [
+          {
+            field: "username",
+            message: "provide a username",
+          },
+        ],
+      };
+    }
     const hashedPassword = await argon2.hash(password);
     const user = await em.create(User, { username, password: hashedPassword });
     await em.persistAndFlush(user);
-    return user;
+    return { user };
   }
   @Mutation(() => UserResponse)
   async login(

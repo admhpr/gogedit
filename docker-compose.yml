@@ -1,5 +1,12 @@
 version: "3.8"
 services:
+  store:
+    image: "redis:latest"
+    ports:
+      - 6379:6379
+    volumes:
+      - ./data/redis:/var/lib/redis
+
   database:
     image: "postgres:latest"
     ports:
@@ -11,4 +18,4 @@ services:
     env_file:
       - .env
     volumes:
-      - ./db-data/:/var/lib/postgresql/data/
+      - ./data/db:/var/lib/postgresql/data

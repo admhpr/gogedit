@@ -53,6 +53,16 @@ export class UserResolver {
         ],
       };
     }
+    if (password.length <= 6) {
+      return {
+        errors: [
+          {
+            field: "password",
+            message: "provide a password longer than six",
+          },
+        ],
+      };
+    }
     const hashedPassword = await argon2.hash(password);
     const user = await em.create(User, { username, password: hashedPassword });
     await em.persistAndFlush(user);

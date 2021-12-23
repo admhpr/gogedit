@@ -1,6 +1,7 @@
 import { User } from "@entities/User";
 import { AppContext } from "../types";
 import {
+  Query,
   Resolver,
   Mutation,
   InputType,
@@ -38,6 +39,14 @@ class UserResponse {
 
 @Resolver()
 export class UserResolver {
+  @Query(() => User, { nullable: true })
+  async me(@Ctx() { em, req }: AppContext) {
+    if (!req.session.userId) {
+      return null;
+    }
+    const user = await em.findOne(User, { id: req.session.userId });
+    return user;
+  }
   @Mutation(() => UserResponse)
   async register(
     @Arg("options") options: UsernamePasswordInput,

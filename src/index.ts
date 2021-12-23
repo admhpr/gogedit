@@ -9,7 +9,7 @@ import { buildSchema } from "type-graphql";
 import { PostResolver } from "@resolvers/post";
 import { UserResolver } from "@resolvers/user";
 
-import redis, { RedisClientType } from "redis";
+import redis from "redis";
 import session from "express-session";
 import connectRedis from "connect-redis";
 
@@ -25,7 +25,7 @@ async function main() {
     session({
       name: "qid",
       store: new RedisStore({
-        client: redisClient as RedisClientType,
+        client: redisClient as any,
         disableTouch: true,
       }),
       secret: "meh",
@@ -43,7 +43,7 @@ async function main() {
       resolvers: [PostResolver, UserResolver],
       validate: false,
     }),
-    context: () => ({ em: orm.em }),
+    context: ({ req, res }) => ({ em: orm.em, req, res }),
   });
   await apolloServer.start();
   apolloServer.applyMiddleware({ app });

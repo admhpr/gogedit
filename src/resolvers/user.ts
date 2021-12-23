@@ -1,5 +1,5 @@
 import { User } from "@entities/User";
-import { AppContext } from "src/types";
+import { AppContext } from "../types";
 import {
   Resolver,
   Mutation,
@@ -10,7 +10,7 @@ import {
   ObjectType,
 } from "type-graphql";
 import argon2 from "argon2";
-import { USER_EXISTS_ERROR_CODE } from "src/constants";
+import { USER_EXISTS_ERROR_CODE } from "../constants";
 
 @InputType()
 class UsernamePasswordInput {

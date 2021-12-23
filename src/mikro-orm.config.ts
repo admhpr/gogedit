@@ -1,12 +1,13 @@
 import { MikroORM } from "@mikro-orm/core";
 import { IS_PRODUCTION } from "./constants";
-import { Post } from "./entities/Post";
+import { Post } from "@entities/Post";
+import { Post } from "@entities/Post";
 import path from "path";
 
 export default {
   dbName: process.env.DB_NAME,
   debug: !IS_PRODUCTION,
-  entities: [Post],
+  entities: [Post, User],
   migrations: {
     path: path.join(__dirname, "./migrations"),
     pattern: /^[\w-]+\d+\.[tj]s$/,

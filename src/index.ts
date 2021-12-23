@@ -35,6 +35,7 @@ async function main() {
         httpOnly: true,
         secure: IS_PRODUCTION,
       },
+      saveUninitialized: false,
       resave: false,
     })
   );

@@ -10,6 +10,7 @@ import {
   ObjectType,
 } from "type-graphql";
 import argon2 from "argon2";
+import { USER_EXISTS_ERROR_CODE } from "src/constants";
 
 @InputType()
 class UsernamePasswordInput {
@@ -53,19 +54,33 @@ export class UserResolver {
         ],
       };
     }
-    if (password.length <= 6) {
+    if (password.length) {
       return {
         errors: [
           {
             field: "password",
-            message: "provide a password longer than six",
+            message: "provide a password",
           },
         ],
       };
     }
     const hashedPassword = await argon2.hash(password);
     const user = await em.create(User, { username, password: hashedPassword });
-    await em.persistAndFlush(user);
+    try {
+      await em.persistAndFlush(user);
+    } catch (error) {
+      if (error.code === USER_EXISTS_ERROR_CODE) {
+        return {
+          errors: [
+            {
+              field: "username",
+              message: "username in use",
+            },
+          ],
+        };
+      }
+    }
+
     return { user };
   }
   @Mutation(() => UserResponse)

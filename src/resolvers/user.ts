@@ -54,7 +54,7 @@ export class UserResolver {
         ],
       };
     }
-    if (password.length) {
+    if (!password.length) {
       return {
         errors: [
           {

@@ -1,5 +1,5 @@
 import { EntityManager } from "@mikro-orm/postgresql";
 
-export type Context = {
+export type AppContext = {
   em: EntityManager;
 };

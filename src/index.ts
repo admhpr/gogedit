@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { config } from "dotenv";
 config();
 import { MikroORM } from "@mikro-orm/core";
@@ -5,11 +6,13 @@ import { IS_PRODUCTION, SERVER_PORT } from "./constants";
 import ormConfig from "./mikro-orm.config";
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
+import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 import { buildSchema } from "type-graphql";
 import { PostResolver } from "@resolvers/post";
 import { UserResolver } from "@resolvers/user";
 
-import { createClient } from "redis";
+// @ts-expect-error types for redis 3.1.2
+import redis from "redis";
 
 import session from "express-session";
 import connectRedis, { Client } from "connect-redis";
@@ -20,18 +23,11 @@ async function main() {
   const app = express();
 
   const RedisStore = connectRedis(session);
-  const redisClient = createClient({ legacyMode: true });
-
-  (async () => {
-    redisClient.on("error", (err) =>
-      console.log("🚨::REDIS_CLIENT_ERRROR::🚨", err)
-    );
-    await redisClient.connect();
-  })();
+  const redisClient = redis.createClient();
 
   app.use(
     session({
-      name: "qid",
+      name: "BIG_COOKIE_WOOKIE",
       store: new RedisStore({
         client: redisClient as unknown as Client,
         disableTouch: true,
@@ -52,6 +48,7 @@ async function main() {
       resolvers: [PostResolver, UserResolver],
       validate: false,
     }),
+    plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
     context: ({ req, res }) => ({ em: orm.em, req, res }),
   });
   await apolloServer.start();

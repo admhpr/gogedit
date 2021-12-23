@@ -20,7 +20,14 @@ async function main() {
   const app = express();
 
   const RedisStore = connectRedis(session);
-  const redisClient = createClient();
+  const redisClient = createClient({ legacyMode: true });
+
+  (async () => {
+    redisClient.on("error", (err) =>
+      console.log("🚨::REDIS_CLIENT_ERRROR::🚨", err)
+    );
+    await redisClient.connect();
+  })();
 
   app.use(
     session({

@@ -1,5 +1,5 @@
 import { User } from "@entities/User";
-import { AppContext } from "../types";
+import { AppContext, RequestWithSession } from "../types";
 import {
   Query,
   Resolver,
@@ -50,7 +50,7 @@ export class UserResolver {
   @Mutation(() => UserResponse)
   async register(
     @Arg("options") options: UsernamePasswordInput,
-    @Ctx() { em }: AppContext
+    @Ctx() { em, req }: AppContext
   ): Promise<UserResponse> {
     const { username, password } = options;
     if (!username.length) {
@@ -97,7 +97,7 @@ export class UserResolver {
         ],
       };
     }
-
+    setCookie(req, user);
     return { user };
   }
   @Mutation(() => UserResponse)
@@ -118,10 +118,12 @@ export class UserResolver {
         errors: [{ field: "password", message: "invalid login" }],
       };
     }
-
-    // 🍪
-    req.session.userId = user.id;
-
+    setCookie(req, user);
     return { user };
   }
+}
+
+function setCookie(req: RequestWithSession, user: User) {
+  // 🍪
+  req.session.userId = user.id;
 }

@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { config } from "dotenv";
-config({ path: "../../.env" });
+config();
 import { MikroORM } from "@mikro-orm/core";
 import { IS_PRODUCTION, SERVER_PORT } from "./constants";
 import ormConfig from "./mikro-orm.config";
@@ -11,6 +11,7 @@ import { buildSchema } from "type-graphql";
 import { PostResolver } from "@resolvers/post";
 import { UserResolver } from "@resolvers/user";
 
+// @ts-expect-error no redis types 3.1.2
 import redis from "redis";
 
 import session from "express-session";

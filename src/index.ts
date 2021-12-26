@@ -32,7 +32,7 @@ async function main() {
         client: redisClient as unknown as Client,
         disableTouch: true,
       }),
-      secret: process.env.SESSION_SECRET,
+      secret: process.env.SESSION_SECRET as string,
       cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 365,
         httpOnly: true,

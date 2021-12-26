@@ -2,10 +2,30 @@
 
 exploring a stack, toying around 🔫 🪀 🤖
 
+### data sources
+
+- postgres
+- redis
+### server
+
+- typescript
+- graphql
+- express
+### web
+
+- typescript
+- react 
+- next
+- chakra
+
+
+
+
 You will need:
 
 - [X] [docker](https://docs.docker.com/)
 - [X] [node](https://nodejs.org/en/) v16.13.1 recommended install with [nvm](https://github.com/nvm-sh/nvm)
+
 
 ###  setup creds
 

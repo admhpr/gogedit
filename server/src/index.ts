@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { config } from "dotenv";
-config();
+config({ path: path.join(__dirname, "../../.env") });
 import { MikroORM } from "@mikro-orm/core";
 import { IS_PRODUCTION, SERVER_PORT } from "./constants";
 import ormConfig from "./mikro-orm.config";
@@ -16,6 +16,7 @@ import redis from "redis";
 
 import session from "express-session";
 import connectRedis, { Client } from "connect-redis";
+import path from "path/posix";
 
 async function main() {
   const orm = await MikroORM.init(ormConfig);

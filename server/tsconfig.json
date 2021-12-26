@@ -5,7 +5,7 @@
     "lib": ["dom", "es6", "es2017", "esnext.asynciterable"],
     "skipLibCheck": true,
     "sourceMap": true,
-    "outDir": "./dist",
+    "outDir": "server/dist",
     "moduleResolution": "node",
     "removeComments": true,
     "noImplicitAny": true,
@@ -23,10 +23,10 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "@entities/*": ["src/entities/*"],
-      "@resolvers/*": ["src/resolvers/*"]
+      "@entities/*": ["server/src/entities/*"],
+      "@resolvers/*": ["server/src/resolvers/*"]
     }
   },
   "exclude": ["node_modules"],
-  "include": ["./src/**/*.ts"]
+  "include": ["server/src/**/*.ts
 }

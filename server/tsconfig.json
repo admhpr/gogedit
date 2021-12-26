@@ -2,9 +2,10 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "outDir": "dist",
     "paths": {
-      "@entities/*": ["server/src/entities/*"],
-      "@resolvers/*": ["server/src/resolvers/*"]
+      "@entities/*": ["src/entities/*"],
+      "@resolvers/*": ["src/resolvers/*"]
     }
   },
   "include": ["src/**/*.ts"]

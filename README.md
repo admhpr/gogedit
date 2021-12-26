@@ -7,19 +7,25 @@ You will need:
 - [X] [docker](https://docs.docker.com/)
 - [X] [node](https://nodejs.org/en/) v16.13.1 recommended install with [nvm](https://github.com/nvm-sh/nvm)
 
-# setup creds
+###  setup creds
 
 `mv .env-example .env`
 
 change the fields marked `<change-me>` to values of your choice
-# run the db
+### run the db
 
 `docker-compose up`
 
-# install deps
+### install deps
 
 `npm i`
 
-# run the server in dev mode
+### run the server in dev mode
+
+`cd sever && npm i`
+
+/server
 
 `npm run dev`
+
+### run web client

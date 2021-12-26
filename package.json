@@ -4,7 +4,17 @@
   "description": "exploring a stack, toying around 🔫 🪀 🤖",
   "main": ".eslintrc.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts}": [
+      "npx eslint --fix",
+      "npx prettier --write"
+    ],
+    "*.{json,yml}": [
+      "prettier --write"
+    ]
   },
   "repository": {
     "type": "git",
@@ -16,5 +26,13 @@
   "bugs": {
     "url": "https://github.com/admhpr/gogedit/issues"
   },
-  "homepage": "https://github.com/admhpr/gogedit#readme"
+  "homepage": "https://github.com/admhpr/gogedit#readme",
+  "devDependencies": {
+    "husky": "^7.0.4",
+    "eslint": "^8.4.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "lint-staged": "^12.1.2",
+    "prettier": "^2.5.1"
+  }
 }

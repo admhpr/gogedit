@@ -22,11 +22,7 @@
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
-    "paths": {
-      "@entities/*": ["server/src/entities/*"],
-      "@resolvers/*": ["server/src/resolvers/*"]
-    }
+    "paths": {}
   },
-  "exclude": ["node_modules"],
-  "include": ["server/src/**/*.ts
+  "exclude": ["node_modules"]
 }

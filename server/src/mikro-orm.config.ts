@@ -4,7 +4,6 @@ import { Post } from "@entities/Post";
 import { User } from "@entities/User";
 import path from "path";
 
-console.log(process.env);
 export default {
   dbName: process.env.DB_NAME,
   debug: !IS_PRODUCTION,

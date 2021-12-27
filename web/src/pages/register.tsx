@@ -5,7 +5,7 @@ interface RegisterProps {
 }
 
 const Register: React.FC<RegisterProps> = ({}) => {
-    return ();
+    return <div>register page</div>;
 }
 
 export default Register

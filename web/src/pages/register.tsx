@@ -25,8 +25,13 @@ const Register: React.FC<RegisterProps> = ({}) => {
               />
             </FormControl>
             <FormControl isRequired>
-              <FormLabel htmlFor="first-name"></FormLabel>
-              <Input id="first-name" placeholder="First name" />
+              <FormLabel htmlFor="password">Password</FormLabel>
+              <Input
+                value={values.password}
+                onChange={handleChange}
+                id="password"
+                placeholder="Password"
+              />
             </FormControl>
           </Form>
         )}

@@ -43,9 +43,3 @@ change the fields marked `<change-me>` to values of your choice
 ### run application dev mode
 
 `npm run dev`
-
-/server
-
-`npm run dev`
-
-### run web client

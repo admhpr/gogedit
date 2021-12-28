@@ -1,4 +1,4 @@
-# gogedit
+## gogedit
 
 exploring a stack, toying around 🔫 🪀 🤖
 
@@ -40,6 +40,6 @@ change the fields marked `<change-me>` to values of your choice
 
 `npm run install:all`
 
-### run application dev mode
+### run application in dev mode
 
 `npm run dev`

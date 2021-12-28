@@ -22,13 +22,13 @@ export const InputField: React.FC<InputFieldProps> = ({
   size: _,
   ...props
 }) => {
+  const [field, { error }] = useField(props);
   let InputOrTextarea;
   if (textarea) {
     InputOrTextarea = Textarea;
   } else {
     InputOrTextarea = Input;
   }
-  const [field, { error }] = useField(props);
   const hasError = Boolean(error);
   return (
     <FormControl isInvalid={hasError}>

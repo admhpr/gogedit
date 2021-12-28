@@ -4,6 +4,7 @@
   "description": "exploring a stack, toying around 🔫 🪀 🤖",
   "scripts": {
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:web\"",
+    "install:all": "npm i && npm i --prefix server && npm i --prefix web",
     "dev:server": "npm run dev --prefix server",
     "dev:web": "npm run dev --prefix web",
     "test": "echo \"Error: no test specified\" && exit 1",

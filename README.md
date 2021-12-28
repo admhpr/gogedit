@@ -38,11 +38,11 @@ change the fields marked `<change-me>` to values of your choice
 
 ### install deps
 
-`npm i`
+`npm run install:all`
 
-### run the server in dev mode
+### run application dev mode
 
-`cd sever && npm i`
+`npm run dev`
 
 /server
 

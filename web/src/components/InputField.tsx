@@ -8,7 +8,9 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 
-type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
+type InputFieldProps = InputHTMLAttributes<
+  HTMLInputElement | HTMLTextAreaElement
+> & {
   label: string;
   name: string;
   textarea?: boolean;

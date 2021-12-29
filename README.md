@@ -4,7 +4,7 @@ exploring a stack, toying around 🔫 🪀 🤖
 
 ### data sources
 
-- postgres
+- postgresql
 - redis
 ### server
 

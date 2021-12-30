@@ -3,7 +3,7 @@ import path from "path";
 import { config } from "dotenv";
 config({ path: path.join(__dirname, "../../.env") });
 import { MikroORM } from "@mikro-orm/core";
-import { IS_PRODUCTION, SERVER_PORT } from "./constants";
+import { CLIENT_PORT, IS_PRODUCTION, SERVER_PORT } from "./constants";
 import ormConfig from "./mikro-orm.config";
 import express from "express";
 import cors from "cors";
@@ -26,7 +26,9 @@ async function main() {
 
   const RedisStore = connectRedis(session);
   const redisClient = redis.createClient();
-  app.use(cors({ origin: `http://localhost:3000`, credentials: true }));
+  app.use(
+    cors({ origin: `http://localhost:${CLIENT_PORT}`, credentials: true })
+  );
   app.use(
     session({
       name: "qid",

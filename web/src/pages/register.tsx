@@ -30,7 +30,7 @@ const Register: React.FC<RegisterProps> = ({}) => {
               mt={4}
               type="submit"
               isLoading={isSubmitting}
-              variantColor="teal"
+              colorScheme="teal"
             >
               Register
             </Button>

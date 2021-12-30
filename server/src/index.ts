@@ -6,6 +6,7 @@ import { MikroORM } from "@mikro-orm/core";
 import { IS_PRODUCTION, SERVER_PORT } from "./constants";
 import ormConfig from "./mikro-orm.config";
 import express from "express";
+import cors from "cors";
 import { ApolloServer } from "apollo-server-express";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 import { buildSchema } from "type-graphql";
@@ -25,7 +26,7 @@ async function main() {
 
   const RedisStore = connectRedis(session);
   const redisClient = redis.createClient();
-
+  app.use(cors({ origin: `http://localhost:3000`, credentials: true }));
   app.use(
     session({
       name: "qid",
@@ -54,7 +55,7 @@ async function main() {
     context: ({ req, res }) => ({ em: orm.em, req, res }),
   });
   await apolloServer.start();
-  apolloServer.applyMiddleware({ app });
+  apolloServer.applyMiddleware({ app, cors: false });
 
   app.listen(SERVER_PORT, () => {
     console.log(`server running on http://localhost:${SERVER_PORT}/graphql 🚀`);

@@ -3,7 +3,7 @@ import path from "path";
 import { config } from "dotenv";
 config({ path: path.join(__dirname, "../../.env") });
 import { MikroORM } from "@mikro-orm/core";
-import { CLIENT_PORT, IS_PRODUCTION, SERVER_PORT } from "./constants";
+import { CLIENT_PORT, IS_PRODUCTION, ONE_YEAR_IN_MS, SERVER_PORT } from "./constants";
 import ormConfig from "./mikro-orm.config";
 import express from "express";
 import cors from "cors";
@@ -38,7 +38,7 @@ async function main() {
       }),
       secret: process.env.SESSION_SECRET as string,
       cookie: {
-        maxAge: 1000 * 60 * 60 * 24 * 365,
+        maxAge: ONE_YEAR_IN_MS,
         httpOnly: true,
         sameSite: "lax", // prevent https://en.wikipedia.org/wiki/Cross-site_request_forgery
         secure: IS_PRODUCTION,

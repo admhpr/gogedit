@@ -3,7 +3,12 @@ import path from "path";
 import { config } from "dotenv";
 config({ path: path.join(__dirname, "../../.env") });
 import { MikroORM } from "@mikro-orm/core";
-import { CLIENT_PORT, IS_PRODUCTION, ONE_YEAR_IN_MS, SERVER_PORT } from "./constants";
+import {
+  CLIENT_PORT,
+  IS_PRODUCTION,
+  ONE_YEAR_IN_MS,
+  SERVER_PORT,
+} from "./constants";
 import ormConfig from "./mikro-orm.config";
 import express from "express";
 import cors from "cors";

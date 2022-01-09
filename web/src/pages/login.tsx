@@ -9,19 +9,19 @@ import { useRouter } from "next/router";
 
 interface RegisterProps {}
 
-const Register: React.FC<RegisterProps> = ({}) => {
+const Login: React.FC<RegisterProps> = ({}) => {
   const router = useRouter();
-  const [, register] = useLoginMutation();
+  const [, login] = useLoginMutation();
   return (
     <Wrapper variant="small">
       <Formik
         initialValues={{ username: "", password: "" }}
         onSubmit={async (values, { setErrors }) => {
-          const { data } = await register(values);
-          if (data?.register.errors) {
-            const { register } = data;
-            setErrors(toErrorMap(register.errors!));
-          } else if (data?.register.user) {
+          const { data } = await login({ options: values });
+          if (data?.login.errors) {
+            const { login } = data;
+            setErrors(toErrorMap(login.errors!));
+          } else if (data?.login.user) {
             router.push("/");
           }
           return data;
@@ -54,4 +54,4 @@ const Register: React.FC<RegisterProps> = ({}) => {
   );
 };
 
-export default Register;
+export default Login;

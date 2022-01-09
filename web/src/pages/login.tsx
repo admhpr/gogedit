@@ -3,16 +3,15 @@ import { Formik, Form } from "formik";
 import { Button } from "@chakra-ui/react";
 import { Wrapper } from "src/components/Wrapper";
 import { InputField } from "src/components/InputField";
-import { useRegisterMutation } from "src/generated/graphql";
+import { useLoginMutation } from "src/generated/graphql";
 import { toErrorMap } from "src/utils/toErrorMap";
-import { responseSymbol } from "next/dist/server/web/spec-compliant/fetch-event";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 interface RegisterProps {}
 
 const Register: React.FC<RegisterProps> = ({}) => {
   const router = useRouter();
-  const [, register] = useRegisterMutation();
+  const [, register] = useLoginMutation();
   return (
     <Wrapper variant="small">
       <Formik

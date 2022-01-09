@@ -1,4 +1,4 @@
-mutation Login($options: UsernamePasswordInput) {
+mutation Login($options: UsernamePasswordInput!) {
   login(options: $options) {
     user {
       id
